@@ -19,19 +19,18 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch("https://ai-img-generator-9r2s.onrender.com/api/v1/dalle/", {
+        const response = await fetch("http://localhost:8080/api/v1/dalle", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             prompt: form.prompt,
           }),
         });
-  
+
         const data = await response.json();
-        
-        if (data && data.photo) { // Update this condition to match the actual structure of the response
+
+        if (data && data.photo) {
+          // Update this condition to match the actual structure of the response
           setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
         } else {
           alert("Invalid response format from server");
@@ -45,7 +44,6 @@ const CreatePost = () => {
       alert("Please provide a proper prompt");
     }
   };
-  
 
   const handleSubmit = () => {};
 
