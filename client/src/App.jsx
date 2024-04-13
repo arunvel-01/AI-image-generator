@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
+import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />
         </Routes>
+        < Analytics />
       </main>
     </BrowserRouter>
   );
