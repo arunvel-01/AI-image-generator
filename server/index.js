@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./mongodb/connect.js";
 import postRoutes from "./routes/postRoutes.js";
 import dalleRoutes from "./routes/dalleRoutes.js";
+import { job } from './cron.js';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use("/api/v1/dalle", dalleRoutes);
 app.get("/", async (req, res) => {
   res.send("Hello from Dall-E!");
 });
+
+job.start();
 
 const startServer = async () => {
   try {
